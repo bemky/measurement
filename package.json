@@ -1,0 +1,33 @@
+{
+  "type": "module",
+  "name": "measurement",
+  "version": "0.1.0",
+  "description": "Javascript Classes for storing, and converting units of measurement",
+  "main": "esm/index.js",
+  "scripts": {
+    "test": "mocha -r @babel/register",
+    "build": "babel src -d esm --no-babelrc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bemky/measurement.git"
+  },
+  "keywords": [
+    "units",
+    "measurement",
+    "measure"
+  ],
+  "author": "Ben Ehmke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bemky/measurement/issues"
+  },
+  "homepage": "https://github.com/bemky/measurement#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/preset-env": "^7.13.9",
+    "@babel/register": "^7.13.8",
+    "mocha": "^10.1.0"
+  }
+}
