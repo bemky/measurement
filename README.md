@@ -3,7 +3,7 @@ Javascript Classes for storing, and converting units of measurement
 
 ## Installation
 
-    npm install bemky/measurement
+    npm install @benehmke/measurement
 
 ```javascript
 import {Length} from 'measurement';

@@ -1,6 +1,7 @@
 {
   "type": "module",
   "name": "measurement",
+  "scope": "@benehmke",
   "version": "0.1.0",
   "description": "Javascript Classes for storing, and converting units of measurement",
   "main": "esm/index.js",
