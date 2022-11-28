@@ -11,11 +11,45 @@ export default class Measurement {
     });
     if (unitsModel) return unitsModel;else throw `Unable to find ${units} in units.`;
   }
+  constructor(...args) {
+    this.valueTo(...args);
+  }
+  in(...args) {
+    return this.to(...args);
+  }
+  to(units) {
+    units = this.constructor.getUnits(units);
+    return new this.constructor(units.fromBase(this.toBase()), units);
+  }
+  add(measurement) {
+    if (measurement instanceof this.constructor) {
+      measurement = measurement.to(this.units).value;
+    }
+    return new this.constructor(this.value + measurement, this.units);
+  }
+  subtract(measurement) {
+    if (measurement instanceof this.constructor) {
+      measurement = measurement.to(this.units).value;
+    }
+    return new this.constructor(this.value - measurement, this.units);
+  }
+  clone() {
+    return new this.constructor(this.value, this.units);
+  }
+  toBase() {
+    return this.constructor.getUnits(this.units).toBase(this.value);
+  }
+  toString() {
+    return this.value.toString() + " " + this.units;
+  }
+  valueOf() {
+    return this.toBase();
+  }
 
   // new Measurement("9 sqft")
   // new Measurement({value: 9, units: "sqft"})
   // new Measurement(9, "sqft")
-  constructor(...args) {
+  valueTo(...args) {
     if (typeof args[0] == "string") {
       [this.value, this.units] = args[0].split(" ");
     } else if (typeof args[0] == "object") {
@@ -26,21 +60,5 @@ export default class Measurement {
       if (typeof args[1] == "string") this.units = args[1];
     }
     if (!this.units) this.units = this.constructor.units.base;
-  }
-  to(units) {
-    units = this.constructor.getUnits(units);
-    return new this.constructor({
-      value: units.fromBase(this.toBase()),
-      units: units
-    });
-  }
-  toBase() {
-    return this.constructor.getUnits(this.units).toBase(this.value);
-  }
-  toString() {
-    return this.value.toString() + " " + this.units;
-  }
-  valueOf() {
-    return this.toBase();
   }
 }

@@ -23,6 +23,33 @@ console.log(boxFront.to('in'));
 // >> 108 in
 ```
 
+### `add(measurement)`
+
+```javascript
+const length1 = new Length('9 ft');
+const length2 = new Length('3 m');
+console.log(length1.add(length2));
+// >> 18.84 ft
+```
+
+### `subtract(measurement)`
+
+```javascript
+const length1 = new Length('18 ft');
+const length2 = new Length('3 m');
+console.log(length1.subtract(length2));
+// >> 8.016 ft
+```
+
+### `by(measurement)`
+
+```javascript
+const length1 = new Length('9 ft');
+const length2 = new Length('3 m');
+console.log(length1.by(length2));
+// >> 88.56 sqft
+```
+
 ### `valueOf`
 
 ```javascript
@@ -31,6 +58,8 @@ const distanceB = new Length('5 m');
 console.log(distanceA < distanceB);
 // >> true
 ```
+
+
 
 ## Units
 #### Length
@@ -49,13 +78,14 @@ console.log(distanceA < distanceB);
 |Name|Label|
 | --- | --- |
 |Square Meter|`sqm`|
+|Square Inch|`sqin`|
 |Square Foot|`sqft`|
 |Tsubo|`tsubo`|
 
 ## Development
 ### TODO
-- [ ] Add/Subtract Method
-- [ ] Length.toArea
+- [x] Add/Subtract Method
+- [x] Length.toArea
 - [ ] Custom Unit rename (ex ft2 for sqft)
 - [ ] Volume
 - [ ] Weight

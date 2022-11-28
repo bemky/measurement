@@ -39,4 +39,34 @@ describe('area', () => {
         assert.ok(area1 < area2)
     })
     
+    it('add', () => {
+        const area1 = new Area(99, 'sqft')
+        const area2 = new Area(20, 'sqm')
+        assert.equal("314.27820833420003 sqft", area1.add(area2).toString())
+    })
+    
+    it('add measurement', () => {
+        const area = new Area(99, 'sqft')
+        assert.equal("102 sqft", area.add(3).toString())
+    })
+    
+    it('subtract', () => {
+        const area1 = new Area(20, 'sqm')
+        const area2 = new Area(99, 'sqft')
+        assert.equal("10.802599040000239 sqm", area1.subtract(area2).toString())
+    })
+    
+    it('subtract measurement', () => {
+        const area = new Area(99, 'sqft')
+        assert.equal("96 sqft", area.subtract(3).toString())
+    })
+    
+    it('clone', () => {
+        const area1 = new Area(20, 'sqm')
+        const areaClone = area1.clone();
+        area1.valueTo(21)
+        assert.equal("21 sqm", area1.toString())
+        assert.equal("20 sqm", areaClone.toString())
+    })
+    
 })

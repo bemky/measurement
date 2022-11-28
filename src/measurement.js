@@ -16,28 +16,32 @@ export default class Measurement {
         else throw `Unable to find ${units} in units.`
     }
     
-    // new Measurement("9 sqft")
-    // new Measurement({value: 9, units: "sqft"})
-    // new Measurement(9, "sqft")
     constructor (...args) {
-        if (typeof args[0] == "string") {
-            [this.value, this.units] = args[0].split(" ")
-        } else if (typeof args[0] == "object") {
-            if (args[0].value) this.value = args[0].value
-            if (args[0].units) this.units = args[0].units
-        } else if (typeof args[0] == "number") {
-            this.value = args[0]
-            if (typeof args[1] == "string") this.units = args[1]
-        }
-        if (!this.units) this.units = this.constructor.units.base;
+        this.valueTo(...args)
     }
     
+    in (...args) { return this.to(...args) }
     to (units) {
         units = this.constructor.getUnits(units);
-        return new this.constructor({
-            value: units.fromBase(this.toBase()),
-            units: units
-        })
+        return new this.constructor(units.fromBase(this.toBase()), units)
+    }
+    
+    add (measurement) {
+        if (measurement instanceof this.constructor) {
+            measurement = measurement.to(this.units).value
+        }
+        return new this.constructor(this.value + measurement, this.units)
+    }
+    
+    subtract (measurement) {
+        if (measurement instanceof this.constructor) {
+            measurement = measurement.to(this.units).value
+        }
+        return new this.constructor(this.value - measurement, this.units)
+    }
+    
+    clone () {
+        return new this.constructor(this.value, this.units)
     }
     
     toBase () {
@@ -50,5 +54,21 @@ export default class Measurement {
     
     valueOf () {
         return this.toBase()
+    }
+    
+    // new Measurement("9 sqft")
+    // new Measurement({value: 9, units: "sqft"})
+    // new Measurement(9, "sqft")
+    valueTo (...args) {
+        if (typeof args[0] == "string") {
+            [this.value, this.units] = args[0].split(" ")
+        } else if (typeof args[0] == "object") {
+            if (args[0].value) this.value = args[0].value
+            if (args[0].units) this.units = args[0].units
+        } else if (typeof args[0] == "number") {
+            this.value = args[0]
+            if (typeof args[1] == "string") this.units = args[1]
+        }
+        if (!this.units) this.units = this.constructor.units.base;
     }
 }
