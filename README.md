@@ -50,6 +50,35 @@ console.log(length1.by(length2));
 // >> 88.56 sqft
 ```
 
+### `round(options)`
+`precision`: integer sets the precision of the numbe
+`significant`: If `true`, precision will be the number of significant_digits. If `false`, the number of fractional digits (defaults to `false`).
+```javascript
+const length = new Length('99.12445 ft');
+console.log(length.round({precision: 1}));
+// >> 99.1 sqft
+
+const length2 = new Length('94.12445 ft');
+console.log(length2.round({precision: 1, significant: true}));
+// >> 90 sqft
+```
+
+### `ceil(options)`
+`options`: see `round()`
+```javascript
+const length = new Length('99.12 ft');
+console.log(length.ceil({precision: 1}));
+// >> 99.2 sqft
+```
+
+### `floor(options)`
+`options`: see `round()`
+```javascript
+const length = new Length('99.16 ft');
+console.log(length.floor({precision: 1}));
+// >> 99.1 sqft
+```
+
 ### `valueOf`
 
 ```javascript

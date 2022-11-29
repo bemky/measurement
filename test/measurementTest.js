@@ -69,4 +69,24 @@ describe('measurement', () => {
         assert.equal("20 sqm", areaClone.toString())
     })
     
+    it('round', () => {
+        const area1 = new Area(99.123, 'sqft')
+        assert.equal("99 sqft", area1.round().toString())
+    })
+    
+    it('round with precision', () => {
+        const area1 = new Area(99.123, 'sqft')
+        assert.equal("99.1 sqft", area1.round({precision: 1}).toString())
+    })
+    
+    it('ceil', () => {
+        const area1 = new Area(99.123, 'sqft')
+        assert.equal("100 sqft", area1.ceil().toString())
+    })
+    
+    it('floor', () => {
+        const area1 = new Area(99.847, 'sqft')
+        assert.equal("99 sqft", area1.floor().toString())
+    })
+    
 })

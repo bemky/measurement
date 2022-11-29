@@ -1,3 +1,6 @@
+import round from './support/round.js';
+import {ceil, floor} from './support/round.js';
+
 export default class Measurement {
     
     value = null
@@ -30,14 +33,26 @@ export default class Measurement {
         if (measurement instanceof this.constructor) {
             measurement = measurement.to(this.units).value
         }
-        return new this.constructor(this.value + measurement, this.units)
+        return this.clone().valueTo(this.value + measurement)
     }
     
     subtract (measurement) {
         if (measurement instanceof this.constructor) {
             measurement = measurement.to(this.units).value
         }
-        return new this.constructor(this.value - measurement, this.units)
+        return this.clone().valueTo(this.value - measurement)
+    }
+    
+    round (options) {
+        return this.clone().valueTo(round(this.value, options))
+    }
+    
+    ceil (options) {
+        return this.clone().valueTo(ceil(this.value, options))
+    }
+    
+    floor (options) {
+        return this.clone().valueTo(floor(this.value, options))
     }
     
     clone () {
@@ -70,5 +85,6 @@ export default class Measurement {
             if (typeof args[1] == "string") this.units = args[1]
         }
         if (!this.units) this.units = this.constructor.units.base;
+        return this
     }
 }
