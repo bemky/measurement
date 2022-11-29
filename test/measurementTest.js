@@ -2,7 +2,7 @@ import Measurement from '../src/measurement.js';
 import Area from '../src/area.js';
 import * as assert from 'assert';
 
-describe('area', () => {
+describe('measurement', () => {
     
     it('init parses string', () => {
         const measurement = new Measurement("99 sqft")
