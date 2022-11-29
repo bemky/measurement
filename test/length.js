@@ -38,8 +38,9 @@ describe('length', () => {
     })
     
     it('ft to cm', () => {
-        const length = new Length('99 ft')
-        assert.equal(3017.52, length.to('cm').value)
+        const length = new Length('99 ft').to('cm')
+        assert.equal(3017.52, length.value)
+        assert.equal('cm', length.units)
     })
     
     it('by', () => {

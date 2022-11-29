@@ -22,8 +22,8 @@ export default class Measurement {
     
     in (...args) { return this.to(...args) }
     to (units) {
-        units = this.constructor.getUnits(units);
-        return new this.constructor(units.fromBase(this.toBase()), units)
+        const unitsModel = this.constructor.getUnits(units);
+        return new this.constructor(unitsModel.fromBase(this.toBase()), units)
     }
     
     add (measurement) {
