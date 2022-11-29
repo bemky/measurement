@@ -26,6 +26,11 @@ describe('measurement', () => {
         
         assert.equal(99, measurement.value)
         assert.equal('sqft', measurement.units)
+        
+        const measurement2 = new Measurement('13', 'sqft')
+        
+        assert.equal(13, measurement2.value)
+        assert.equal('sqft', measurement2.units)
     })
     
     it('toString', () => {
@@ -51,25 +56,25 @@ describe('measurement', () => {
     })
     
     it('add', () => {
+        const area = new Area(99, 'sqft')
+        assert.equal("102 sqft", area.add(3).toString())
+    })
+    
+    it('add measurement', () => {
         const area1 = new Area(99, 'sqft')
         const area2 = new Area(20, 'sqm')
         assert.equal("314.27820833420003 sqft", area1.add(area2).toString())
     })
     
-    it('add measurement', () => {
-        const area = new Area(99, 'sqft')
-        assert.equal("102 sqft", area.add(3).toString())
-    })
-    
     it('subtract', () => {
-        const area1 = new Area(20, 'sqm')
-        const area2 = new Area(99, 'sqft')
-        assert.equal("10.802599040000239 sqm", area1.subtract(area2).toString())
+        const area = new Area(99, 'sqft')
+        assert.equal("96 sqft", area.subtract(3).toString())
     })
     
     it('subtract measurement', () => {
-        const area = new Area(99, 'sqft')
-        assert.equal("96 sqft", area.subtract(3).toString())
+        const area1 = new Area(100, 'sqft')
+        const area2 = new Area(144, 'sqin')
+        assert.equal("99 sqft", area1.subtract(area2).toString())
     })
     
     it('clone', () => {

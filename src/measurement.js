@@ -77,13 +77,17 @@ export default class Measurement {
     valueTo (...args) {
         if (typeof args[0] == "string") {
             const parts = args[0].split(" ")
-            this.value = parts[0]
-            if (parts[1]) this.units = parts[1]
+            this.value = Number(parts[0])
+            if (parts[1]) {
+                this.units = parts[1]
+            } else if (args[1]) {
+                this.units = args[1]
+            }
         } else if (typeof args[0] == "object") {
-            if (args[0].value) this.value = args[0].value
+            if (args[0].value) this.value = Number(args[0].value)
             if (args[0].units) this.units = args[0].units
         } else if (typeof args[0] == "number") {
-            this.value = args[0]
+            this.value = Number(args[0])
             if (typeof args[1] == "string") this.units = args[1]
         }
         if (!this.units) this.units = this.constructor.units.base;
