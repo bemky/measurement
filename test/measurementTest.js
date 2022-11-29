@@ -39,6 +39,17 @@ describe('measurement', () => {
         assert.ok(area1 < area2)
     })
     
+    it('valueTo', () => {
+        const area1 = new Area(99, 'sqft')
+        area1.valueTo(33)
+        assert.equal(33, area1.value)
+        assert.equal('sqft', area1.units)
+
+        area1.valueTo("22")
+        assert.equal(22, area1.value)
+        assert.equal('sqft', area1.units)
+    })
+    
     it('add', () => {
         const area1 = new Area(99, 'sqft')
         const area2 = new Area(20, 'sqm')

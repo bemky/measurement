@@ -62,7 +62,9 @@ export default class Measurement {
   // new Measurement(9, "sqft")
   valueTo(...args) {
     if (typeof args[0] == "string") {
-      [this.value, this.units] = args[0].split(" ");
+      const parts = args[0].split(" ");
+      this.value = parts[0];
+      if (parts[1]) this.units = parts[1];
     } else if (typeof args[0] == "object") {
       if (args[0].value) this.value = args[0].value;
       if (args[0].units) this.units = args[0].units;
