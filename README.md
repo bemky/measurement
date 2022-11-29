@@ -53,6 +53,7 @@ console.log(length1.by(length2));
 ### `round(options)`
 `precision`: integer sets the precision of the numbe
 `significant`: If `true`, precision will be the number of significant_digits. If `false`, the number of fractional digits (defaults to `false`).
+`resolution`: integer sets the rounding to nearest n digits
 ```javascript
 const length = new Length('99.12445 ft');
 console.log(length.round({precision: 1}));
@@ -61,6 +62,10 @@ console.log(length.round({precision: 1}));
 const length2 = new Length('94.12445 ft');
 console.log(length2.round({precision: 1, significant: true}));
 // >> 90 sqft
+
+const length = new Length('4561 ft');
+console.log(length.round({resolution: 2}));
+// >> 4500 sqft
 ```
 
 ### `ceil(options)`

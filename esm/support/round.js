@@ -4,13 +4,18 @@ export default function round(n, options = {}) {
     significant: false,
     func: Math.round
   }, options);
+  let multiplier;
   if (options.significant) {
     const integerLength = n.toString().split('.')[0].length;
-    const multiplier = Math.pow(10, integerLength - options.precision);
+    multiplier = Math.pow(10, integerLength - options.precision);
     n = options.func(n / multiplier) * multiplier;
   } else {
-    const multiplier = Math.pow(10, options.precision);
+    multiplier = Math.pow(10, options.precision);
     n = options.func(n * multiplier) / multiplier;
+  }
+  if (options.resolution) {
+    multiplier = Math.pow(10, options.resolution - 1);
+    n = options.func(n / multiplier) * multiplier;
   }
   return n;
 }
