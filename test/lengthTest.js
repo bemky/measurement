@@ -48,4 +48,10 @@ describe('length', () => {
         const length2 = new Length(20, 'm')
         assert.ok("6496.38 sqft", length1.by(length2))
     })
+    
+    it('by with declared units', () => {
+        const length1 = new Length(99, 'cm')
+        const length2 = new Length(20, 'cm')
+        assert.ok("19.8 sqft", length1.by(length2, 'sqm'))
+    })
 })

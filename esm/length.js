@@ -38,7 +38,7 @@ export default class Length extends Measurement {
     }
   };
   by(measurement, units) {
-    const area = new Area(this.value * measurement.in(this.units).value, 'sq' + this.units);
+    const area = new Area(this.in('m').value * measurement.in('m').value, 'sqm');
     if (units) return area.in(units);
     return area;
   }
