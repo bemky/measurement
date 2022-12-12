@@ -53,6 +53,9 @@ export default class Measurement {
   toString() {
     return this.value.toString() + " " + this.units;
   }
+  toLocaleString() {
+    return this.value.toLocaleString() + " " + this.units;
+  }
   valueOf() {
     return this.toBase();
   }
